@@ -1,0 +1,153 @@
+<!-- グラフを作るchart.jsってライブラリを使用するサンプル -->
+<!-- {npm install chart.js} でライブラリ持ってきて、以下のようにサンプル書けば表現できる -->
+<!-- 他のグラフのサンプルやCDNでやる方法を確認したければ「https://www.tohoho-web.com/ex/chartjs.html」 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>TEST</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"
+  integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg=="
+  crossorigin="anonymous"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@next/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+</head>
+<body>
+
+<h1>グラフを作るchart.jsライブラリを使用するサンプル</h1>
+<p>{npm install chart.js} でライブラリ持ってきて、以下のようにサンプル書けば表現できる<br>
+	他のグラフのサンプルやCDNでやる方法を確認したければ「https://www.tohoho-web.com/ex/chartjs.html」</p>
+
+<!-- ラインチャート -->
+<div style="width:400px">
+  <canvas id="mychart"></canvas>
+</div>
+
+<!-- 円チャート -->
+<div style="width:400px">
+  <canvas id="mychart-doughnut"></canvas>
+</div>
+
+<!-- レーダーチャート -->
+<div style="width:400px">
+  <canvas id="mychart-radar"></canvas>
+</div>
+
+<!-- 棒チャート -->
+<div style="width:400px">
+  <canvas id="mychart-bar"></canvas>
+</div>
+
+<script>
+// ラインチャートのデータ
+var ctx = document.getElementById('mychart');
+var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    datasets: [{
+      label: 'Red',
+      data: [20, 35, 40, 30, 45, 35, 40],
+      borderColor: '#f88',
+    }, {
+      label: 'Green',
+      data: [20, 15, 30, 25, 30, 40, 35],
+      borderColor: '#484',
+    }, {
+      label: 'Blue',
+      data: [30, 25, 10, 5, 25, 30, 20],
+      borderColor: '#48f',
+    }],
+  },
+  options: {
+    y: {
+      min: 0,
+      max: 60,
+    },
+  },
+});
+
+// 円チャートのデータ
+var ctx = document.getElementById('mychart-doughnut');
+var myChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Red', 'Green', 'Blue'],
+    datasets: [{
+      data: [10, 20, 30],
+      backgroundColor: ['#f88', '#484', '#48f'],
+      weight: 100,
+    }],
+  },
+});
+
+// レーダーチャートのデータ
+var ctx = document.getElementById('mychart-radar');
+var myChart = new Chart(ctx, {
+  type: 'radar',
+  data: {
+    labels: ['Cost', 'Delivery', 'Quality', 'Process', 'Customer'],
+    datasets: [{
+      label: 'Product',
+      data: [30, 40, 30, 40, 50],
+      // データライン
+      borderColor: 'green',
+      borderWidth: 2,
+    }],
+  },
+  options: {
+    scales: {
+      r: {
+        // 最小値・最大値
+        min: 0,
+        max: 60,
+        // 背景色
+        backgroundColor: 'lightyellow',
+        // グリッドライン
+        grid: {
+          color: 'lightseagreen',
+        },
+        // アングルライン
+        angleLines: {
+          color: 'brown',
+        },
+        // ポイントラベル
+        pointLabels: {
+          color: 'blue',
+          backdropColor: '#ddf',
+          backdropPadding: 5,
+          padding: 20,
+        },
+      },
+    },
+  },
+});
+
+// 棒チャートのデータ
+var ctx = document.getElementById('mychart-bar');
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Sun', 'Mon', 'Tue'],
+    datasets: [{
+      label: 'Red',
+      data: [25, 35, 40],
+      backgroundColor: '#f88',
+    }, {
+      label: 'Green',
+      data: [20, 10, 30],
+      backgroundColor: '#484',
+    }, {
+      label: 'Blue',
+      data: [30, 20, 15],
+      backgroundColor: '#48f',
+    }],
+  },
+});
+
+</script>
+</div>
+</body>
+</html>
